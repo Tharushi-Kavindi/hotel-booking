@@ -82,7 +82,7 @@ export default function Hero() {
                 type="text"
                 name="search"
                 placeholder="Search..."
-                className="bg-[#1a1a1a] text-sm sm:text-base text-white placeholder:text-white/70 placeholder:text-sm sm:placeholder:text-base border-0 rounded-full py-6 pl-4 pr-12 sm:pr-32 w-full transition-all"
+                className="bg-[#1a1a1a] text-sm sm:text-base text-white placeholder:text-white/70 placeholder:text-sm sm:placeholder:text-base border-0 rounded-full py-4 pl-4 pr-12 sm:pr-32 w-full transition-all"
               />
             </div>
             <button

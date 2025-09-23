@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
+import { Link } from "react-router";
 
 function Navigation() {
   return (
@@ -9,9 +10,9 @@ function Navigation() {
           Horizone
         </a>
         <div className="hidden md:flex space-x-6">
-          <a href={`/`} className="transition-colors text-sm">
+          <Link to={`/`} className="transition-colors text-sm">
             Home
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -26,14 +27,14 @@ function Navigation() {
           asChild
           className="text-xs hidden md:flex"
         >
-          <a href="/sign-in">Log In</a>
+          <Link to="/sign-in">Log In</Link>
         </Button>
         <Button
           size="sm"
           asChild
           className="bg-white text-black hover:bg-gray-200 text-xs hidden md:flex"
         >
-          <a href="/sign-up">Sign Up</a>
+          <Link to="/sign-up">Sign Up</Link>
         </Button>
         {/* <a href="/about" className="transition-colors text-sm">
           About

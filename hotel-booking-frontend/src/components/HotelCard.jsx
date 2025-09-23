@@ -1,8 +1,9 @@
 import { MapPin, Star } from "lucide-react";
+import { Link } from "react-router";
 
 function HotelCard(props) {
   return (
-    <div href={`/hotels/${props.hotel.id}`} className="block group relative">
+    <Link to={`/hotels/${props.hotel.id}`} className="block group relative">
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
         <img
           src={props.hotel.image}
@@ -29,7 +30,7 @@ function HotelCard(props) {
           <span className="text-xl font-bold">${props.hotel.price}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 export default HotelCard;
