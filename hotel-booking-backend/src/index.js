@@ -1,18 +1,36 @@
 import express from "express";
 import "dotenv/config";
+import cors from "cors";
 import hotelRouter from "./api/hotel.js";
+import reviewsRouter from "./api/review.js";
 import connectDB from "./infrastructure/db.js";
+import bookingRouter from "./api/booking.js";
+import locationsRouter from "./api/location.js";
+import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
+
+import { clerkMiddleware } from "@clerk/express";
+
+app.use(clerkMiddleware()); // Reads the JWT from the request and sets the auth object on the request
 
 const app = express();
 
 //Convert HTTP payloads into JS objects
 app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
+app.use("/api/hotels", hotelRouter);
+app.use("/api/reviews", reviewsRouter);
+app.use("/api/bookings", bookingRouter);
+app.use("/api/locations", locationsRouter);
+
+app.use(globalErrorHandlingMiddleware);
+connectDB();
 
 const PORT = 8000;
 app.listen(PORT, () => {
   console.log("Server is listening on port: ", PORT);
 });
-
-connectDB();
-
-app.use("/api/hotels", hotelRouter);
