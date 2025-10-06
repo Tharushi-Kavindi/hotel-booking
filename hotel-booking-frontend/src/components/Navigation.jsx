@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { Globe } from "lucide-react";
 import { Link } from "react-router";
 
@@ -21,21 +22,34 @@ function Navigation() {
           <Globe className="h-4 w-4 mr-2" />
           EN
         </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          asChild
-          className="text-xs hidden md:flex"
-        >
-          <Link to="/sign-in">Log In</Link>
-        </Button>
-        <Button
-          size="sm"
-          asChild
-          className="bg-white text-black hover:bg-gray-200 text-xs hidden md:flex"
-        >
-          <Link to="/sign-up">Sign Up</Link>
-        </Button>
+        <SignedOut>
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-xs hidden md:flex"
+          >
+            <Link to="/sign-in">Log In</Link>
+          </Button>
+          <Button
+            size="sm"
+            asChild
+            className="bg-white text-black hover:bg-gray-200 text-xs hidden md:flex"
+          >
+            <Link to="/sign-up">Sign Up</Link>
+          </Button>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="bg-white text-black hover:bg-gray-200 text-xs hidden md:flex"
+          >
+            <Link to="/profile">My Account</Link>
+          </Button>
+        </SignedIn>
         {/* <a href="/about" className="transition-colors text-sm">
           About
         </a>

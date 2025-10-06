@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 function HotelCard(props) {
   return (
-    <Link to={`/hotels/${props.hotel.id}`} className="block group relative">
+    <Link to={`/hotels/${props.hotel._id}`} className="block group relative">
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
         <img
           src={props.hotel.image}
@@ -23,7 +23,7 @@ function HotelCard(props) {
             {props.hotel?.rating ?? "No rating"}
           </span>
           <span className="text-muted-foreground">
-            ({props.hotel?.reviews?.length ?? "No"} reviews)
+            ({props.hotel.reviews?.length ?? "No"} Reviews)
           </span>
         </div>
         <div className="flex items-baseline space-x-2">
