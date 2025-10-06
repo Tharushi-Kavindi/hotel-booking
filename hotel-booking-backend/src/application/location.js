@@ -86,12 +86,3 @@ export const deleteLocation = async (req, res, next) => {
     next(error);
   }
 };
-
-export {
-  getAllLocations,
-  createLocation,
-  getLocationById,
-  updateLocation,
-  patchLocation,
-  deleteLocation,
-};

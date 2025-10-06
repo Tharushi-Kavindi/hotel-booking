@@ -6,13 +6,12 @@ import reviewsRouter from "./api/review.js";
 import connectDB from "./infrastructure/db.js";
 import bookingRouter from "./api/booking.js";
 import locationsRouter from "./api/location.js";
-import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
-
+import globalErrorHandlingMiddleware from "./api/middlewear/global-error-handling-middlewear.js";
 import { clerkMiddleware } from "@clerk/express";
 
-app.use(clerkMiddleware()); // Reads the JWT from the request and sets the auth object on the request
-
 const app = express();
+
+app.use(clerkMiddleware()); // Reads the JWT from the request and sets the auth object on the request
 
 //Convert HTTP payloads into JS objects
 app.use(express.json());

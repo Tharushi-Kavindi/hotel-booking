@@ -1,8 +1,8 @@
-import NotFoundError from "../../domain/errors/not-found-error";
+import NotFoundError from "../../domain/errors/not-found-error.js";
 import UnauthorizedError from "../../domain/errors/unauthorized-error.js";
 import ValidationError from "../../domain/errors/validation-error.js";
 
-const globalErrorHandlingMiddlewear = (error, req, res, next) => {
+const globalErrorHandlingMiddleware = (error, req, res, next) => {
   console.error(error);
   if (error instanceof NotFoundError) {
     return res.status(error.statusCode).json({ message: error.message });

@@ -1,6 +1,5 @@
 import Booking from "../infrastructure/entities/Booking.js";
 import Hotel from "../infrastructure/entities/Hotel.js";
-import User from "../infrastructure/entities/User.js";
 import NotFoundError from "../domain/errors/not-found-error.js";
 import ValidationError from "../domain/errors/validation-error.js";
 
