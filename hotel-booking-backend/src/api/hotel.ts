@@ -8,14 +8,20 @@ import {
   deleteHotel,
 } from "../application/hotel";
 import isAuthenticated from "./middlewear/authentication-middlewear";
+import isAdmin from "./middlewear/authorization-middlewear";
 
-const hotelRouter = express.Router();
+const hotelsRouter = express.Router();
 
-hotelRouter.get("/", getAllHotels);
-hotelRouter.post("/", createHotel);
-hotelRouter.get("/:_id", getHotelById);
-hotelRouter.put("/:_id", updateHotel);
-hotelRouter.patch("/:_id", patchHotel);
-hotelRouter.delete("/:_id", isAuthenticated, deleteHotel);
+hotelsRouter
+  .route("/")
+  .get(getAllHotels)
+  .post(isAuthenticated, isAdmin, createHotel);
 
-export default hotelRouter;
+hotelsRouter
+  .route("/:_id")
+  .get(isAuthenticated, getHotelById)
+  .put(updateHotel)
+  .patch(patchHotel)
+  .delete(deleteHotel);
+
+export default hotelsRouter;

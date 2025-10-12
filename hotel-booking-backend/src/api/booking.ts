@@ -5,10 +5,10 @@ import {
   getBookingsByHotel,
 } from "../application/booking";
 
-const bookingRouter = express.Router();
+const bookingsRouter = express.Router();
 
-bookingRouter.post("/", createBooking);
-bookingRouter.get("/user/:userId", getBookingsByUser);
-bookingRouter.get("/hotel/:hotelId", getBookingsByHotel);
+bookingsRouter.route("/").post(createBooking);
+bookingsRouter.route("/user/:userId").get(getBookingsByUser);
+bookingsRouter.route("/hotel/:hotelId").get(getBookingsByHotel);
 
-export default bookingRouter;
+export default bookingsRouter;

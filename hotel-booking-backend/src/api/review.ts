@@ -1,9 +1,9 @@
 import express from "express";
 import { createReview, getReviewsForHotel } from "../application/review";
 
-const reviewRouter = express.Router();
+const reviewsRouter = express.Router();
 
-reviewRouter.post("/", createReview);
-reviewRouter.get("/hotel/:hotelId", getReviewsForHotel); //! /api/reviews/hotel/:hotelId
+reviewsRouter.route("/").post(createReview);
+reviewsRouter.route("/hotel/:hotelId").get(getReviewsForHotel); //! /api/reviews/hotel/:hotelId
 
-export default reviewRouter;
+export default reviewsRouter;

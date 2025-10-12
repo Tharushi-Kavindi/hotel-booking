@@ -2,6 +2,8 @@ import Hotel from "../infrastructure/entities/Hotel";
 import NotFoundError from "../domain/errors/not-found-error";
 import ValidationError from "../domain/errors/validation-error";
 import { Request, Response, NextFunction } from "express";
+import { CreateHotelDto } from "../domain/dtos/hotel";
+import { z } from "zod";
 
 // Controller function to get all hotels
 export const getAllHotels = async (
@@ -25,16 +27,11 @@ export const createHotel = async (
 ) => {
   try {
     const HotelData = req.body;
-    if (
-      !HotelData.name ||
-      !HotelData.image ||
-      !HotelData.location ||
-      !HotelData.price ||
-      !HotelData.description
-    ) {
-      throw new ValidationError("All fields are required");
+    const result = CreateHotelDto.safeParse(HotelData);
+    if (!result.success) {
+      throw new ValidationError(`${result.error.message}`);
     }
-    await Hotel.create(HotelData);
+    await Hotel.create(result.data);
     res.status(201).send();
   } catch (error) {
     next(error);
