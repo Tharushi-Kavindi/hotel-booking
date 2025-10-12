@@ -40,6 +40,13 @@ export const api = createApi({
     getHotelById: build.query({
       query: (id) => `hotels/${id}`,
     }),
+    createHotel: build.mutation({
+      query: (hotel) => ({
+        url: "hotels",
+        method: "POST",
+        body: hotel,
+      }),
+    }),
     addLocation: build.mutation({
       query: (location) => ({
         url: "locations",
@@ -60,4 +67,5 @@ export const {
   useAddLocationMutation,
   useGetAllLocationsQuery,
   useGetHotelByIdQuery,
+  useCreateHotelMutation,
 } = api;
