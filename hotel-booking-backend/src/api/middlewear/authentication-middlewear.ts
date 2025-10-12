@@ -1,6 +1,7 @@
-import UnauthorizedError from "../../domain/errors/unauthorized-error.js";
+import UnauthorizedError from "../../domain/errors/unauthorized-error";
+import { Request, Response, NextFunction } from "express";
 
-const isAuthenticated = (req, res, next) => {
+const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   // console.log(req.auth()); // If the authorization header is not present or clerk BE tells it is invalid, this will return null
   console.log("IS_AUTHENTICATED", req.auth().isAuthenticated);
   if (!req.auth().isAuthenticated) {

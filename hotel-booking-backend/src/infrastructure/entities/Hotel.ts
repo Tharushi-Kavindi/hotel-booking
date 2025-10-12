@@ -26,8 +26,9 @@ const hotelSchema = new mongoose.Schema({
     min: 1,
     max: 5,
   },
-  review: {
-    type: [String],
+  reviews: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Review",
     default: [],
   },
 });

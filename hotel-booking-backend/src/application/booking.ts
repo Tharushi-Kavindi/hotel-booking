@@ -1,11 +1,18 @@
-import Booking from "../infrastructure/entities/Booking.js";
-import Hotel from "../infrastructure/entities/Hotel.js";
-import NotFoundError from "../domain/errors/not-found-error.js";
-import ValidationError from "../domain/errors/validation-error.js";
+import Booking from "../infrastructure/entities/Booking";
+import Hotel from "../infrastructure/entities/Hotel";
+import NotFoundError from "../domain/errors/not-found-error";
+import ValidationError from "../domain/errors/validation-error";
+import { Request, Response, NextFunction } from "express";
+import { getAuth } from "@clerk/express";
 
-const createBooking = async (req, res, next) => {
+const createBooking = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const userId = req.auth().userId;
+    // const userId = req.auth().userId;
+    const { userId } = getAuth(req);
     console.log("USER_ID", userId);
     const bookingData = req.body;
     if (
@@ -34,10 +41,14 @@ const createBooking = async (req, res, next) => {
   }
 };
 
-const getBookingsByUser = async (req, res, next) => {
+const getBookingsByUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const userId = req.params.userId;
-    const user = await User.findById(userId);
+    const user = await Booking.findById(userId);
     if (!user) {
       throw new NotFoundError("User not found");
     }
@@ -48,7 +59,11 @@ const getBookingsByUser = async (req, res, next) => {
   }
 };
 
-const getBookingsByHotel = async (req, res, next) => {
+const getBookingsByHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const hotelId = req.params.hotelId;
     const hotel = await Hotel.findById(hotelId);

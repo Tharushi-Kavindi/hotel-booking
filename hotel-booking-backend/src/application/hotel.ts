@@ -1,9 +1,14 @@
-import Hotel from "../infrastructure/entities/Hotel.js";
-import NotFoundError from "../domain/errors/not-found-error.js";
-import ValidationError from "../domain/errors/validation-error.js";
+import Hotel from "../infrastructure/entities/Hotel";
+import NotFoundError from "../domain/errors/not-found-error";
+import ValidationError from "../domain/errors/validation-error";
+import { Request, Response, NextFunction } from "express";
 
 // Controller function to get all hotels
-export const getAllHotels = async (req, res, next) => {
+export const getAllHotels = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const hotels = await Hotel.find();
     res.status(200).json(hotels);
@@ -13,7 +18,11 @@ export const getAllHotels = async (req, res, next) => {
 };
 
 // Controller function to create a new hotel
-export const createHotel = async (req, res, next) => {
+export const createHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const HotelData = req.body;
     if (
@@ -33,7 +42,11 @@ export const createHotel = async (req, res, next) => {
 };
 
 // Controller function to get a specific hotel by ID
-export const getHotelById = async (req, res, next) => {
+export const getHotelById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const _id = req.params._id;
     const hotelData = await Hotel.findById(_id);
@@ -47,7 +60,11 @@ export const getHotelById = async (req, res, next) => {
 };
 
 // Controller function to update a hotel completely
-export const updateHotel = async (req, res, next) => {
+export const updateHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const _id = req.params._id;
     const hotelData = req.body;
@@ -73,7 +90,11 @@ export const updateHotel = async (req, res, next) => {
 };
 
 // Controller function to partially update a hotel (patch)
-export const patchHotel = async (req, res, next) => {
+export const patchHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const _id = req.params._id;
     const hotelData = req.body;
@@ -92,7 +113,11 @@ export const patchHotel = async (req, res, next) => {
 };
 
 // Controller function to delete a hotel
-export const deleteHotel = async (req, res, next) => {
+export const deleteHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const _id = req.params._id;
     const hotel = await Hotel.findById(_id);

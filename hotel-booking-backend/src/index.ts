@@ -1,12 +1,12 @@
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
-import hotelRouter from "./api/hotel.js";
-import reviewsRouter from "./api/review.js";
-import connectDB from "./infrastructure/db.js";
-import bookingRouter from "./api/booking.js";
-import locationsRouter from "./api/location.js";
-import globalErrorHandlingMiddleware from "./api/middlewear/global-error-handling-middlewear.js";
+import hotelRouter from "./api/hotel";
+import reviewsRouter from "./api/review";
+import connectDB from "./infrastructure/db";
+import bookingRouter from "./api/booking";
+import locationsRouter from "./api/location";
+import globalErrorHandlingMiddleware from "./api/middlewear/global-error-handling-middlewear";
 import { clerkMiddleware } from "@clerk/express";
 
 const app = express();
